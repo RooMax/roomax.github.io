@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shieldbase RLS Starter for Supabase — tested policies, not guesswork</title>
+<meta name="description" content="Production-tested Row Level Security for Next.js + Supabase apps built with Lovable, Bolt, v0 and Cursor. 4 migrations, 25 tests, an audit script. $39 one-time.">
+<meta property="og:title" content="Shieldbase RLS Starter for Supabase">
+<meta property="og:description" content="Tested Supabase RLS policies for Next.js: 4 migrations, 25 tests, an audit script. Built for Lovable, Bolt, v0 and Cursor apps.">
+<meta property="og:image" content="cover.png">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f172a; --ink-2:#334155; --ink-3:#64748b;
+    --paper:#f8fafc; --line:#e2e8f0; --panel:#ffffff;
+    --pass:#15803d; --pass-bg:#dcfce7; --fail:#b91c1c; --fail-bg:#fee2e2; --warn:#a16207;
+    --brand:#0f172a;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:17px;line-height:1.55}
+  a{color:inherit}
+  code,pre,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  header{border-bottom:1px solid var(--line);background:var(--panel)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:600;text-decoration:none}
+  .logo img{width:28px;height:28px}
+  nav a{margin-left:22px;text-decoration:none;color:var(--ink-2);font-size:15px}
+  nav a:hover{color:var(--ink)}
+  .btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:12px 20px;border-radius:8px;font-weight:600;font-size:16px}
+  .btn:hover{background:#1e293b}
+  .btn:focus-visible,a:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .hero{padding:72px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+  h1{font-size:clamp(34px,4.6vw,52px);line-height:1.08;letter-spacing:-0.02em;margin:0 0 18px;font-weight:600}
+  .lede{font-size:20px;color:var(--ink-2);max-width:34ch;margin:0 0 28px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .price{color:var(--ink-3);font-size:15px}
+  .demo{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0f172a}
+  .demo img{display:block;width:100%;height:auto}
+  .demo figcaption{font-size:14px;color:var(--ink-3);padding:10px 14px;background:var(--panel);border-top:1px solid var(--line)}
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  h2{font-size:28px;letter-spacing:-0.01em;margin:0 0 10px;font-weight:600}
+  .sub{color:var(--ink-2);margin:0 0 28px;max-width:60ch}
+  .problem{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .term{border-radius:10px;padding:18px 20px;font-size:15px;line-height:1.6;white-space:pre-wrap}
+  .term.bad{background:var(--fail-bg);color:#7f1d1d;border:1px solid #fecaca}
+  .term.good{background:var(--pass-bg);color:#14532d;border:1px solid #bbf7d0}
+  .term b{font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:16px}
+  th,td{text-align:left;padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-weight:600;color:var(--ink-2);font-size:14px}
+  td code{font-size:14px;background:#eef2f7;padding:2px 6px;border-radius:4px}
+  .mistakes{counter-reset:m;display:grid;grid-template-columns:1fr 1fr;gap:18px 40px}
+  .mistake{padding:18px 0;border-top:1px solid var(--line)}
+  .mistake h3{margin:0 0 6px;font-size:18px;font-weight:600}
+  .mistake p{margin:0;color:var(--ink-2);font-size:16px}
+  .mistake code{font-size:14px}
+  .shots{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .shots img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px}
+  .pricing{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .plan{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px}
+  .plan h3{margin:0 0 4px;font-size:22px;font-weight:600}
+  .plan .amt{font-size:40px;font-weight:600;letter-spacing:-0.02em;margin:10px 0 4px}
+  .plan .per{color:var(--ink-3);font-size:15px;margin-bottom:18px}
+  .plan ul{margin:0 0 22px;padding-left:20px;color:var(--ink-2)}
+  .plan li{margin:6px 0}
+  .faq details{border-top:1px solid var(--line);padding:14px 0}
+  .faq summary{cursor:pointer;font-weight:600}
+  .faq p{color:var(--ink-2);margin:10px 0 0}
+  footer{border-top:1px solid var(--line);padding:32px 0;color:var(--ink-3);font-size:15px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  footer a{color:var(--ink-2)}
+  @media (max-width:820px){
+    .hero-grid,.problem,.mistakes,.shots,.pricing{grid-template-columns:1fr}
+    .hero{padding:44px 0 24px}
+    nav a{margin-left:14px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><img src="icon.png" alt="">Shieldbase Labs</a>
+    <nav aria-label="Primary">
+      <a href="#inside">What's inside</a>
+      <a href="#mistakes">Six mistakes</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Row Level Security for Supabase, with the tests that prove it.</h1>
+        <p class="lede">If your app was built with Lovable, Bolt, v0 or Cursor, RLS is the only thing between one user's data and another's. This kit is the policy set I run in production, plus 25 tests and an audit script.</p>
+        <div class="cta">
+          <a class="btn" href="https://shieldbaselabs.lemonsqueezy.com/checkout/buy/1c695770-01a0-4749-b58b-15c5110f3fe6">Buy the kit — $39</a>
+          <a class="btn ghost" href="#pricing">Get a security audit</a>
+        </div>
+        <p class="price">One-time purchase. Personal and commercial use. Updates included.</p>
+      </div>
+      <figure class="demo" style="margin:0">
+        <img src="demo.gif" alt="Terminal animation: the audit script finds six problems, the kit's migrations are applied, 25 tests pass, and the audit runs clean.">
+        <figcaption>Audit a broken project, apply the kit, run the tests, audit again.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>What "it works" looks like when RLS is wrong</h2>
+      <p class="sub">The app runs. Every user sees every row. Nobody notices until someone does.</p>
+      <div class="problem">
+        <pre class="term bad"><b>-- what the AI generated</b>
+create policy "allow all"
+  on public.profiles
+  using (true);
+
+-- every profile readable by anyone
+-- holding the public anon key
+-- (which is in your page source)</pre>
+        <pre class="term good"><b>-- what the kit ships</b>
+create policy "profiles: read own"
+  on public.profiles for select
+  to authenticated
+  using (auth.uid() = id);
+
+revoke all on public.profiles from anon;
+-- and a test that proves it</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="wrap">
+      <h2>What's inside</h2>
+      <p class="sub">Plain SQL and TypeScript. Nothing proprietary, no runtime dependency on Shieldbase.</p>
+      <table>
+        <thead><tr><th>File</th><th>What it gives you</th></tr></thead>
+        <tbody>
+          <tr><td><code>001_profiles.sql</code></td><td>One profile per user created by a signup trigger. Users read and update only their own row. <code>with check</code> on every write.</td></tr>
+          <tr><td><code>002_entitlements.sql</code></td><td>Premium and paid-content gating through <code>has_entitlement()</code>. Premium rows are invisible without an active, unexpired entitlement.</td></tr>
+          <tr><td><code>003_tenants.sql</code></td><td>Organizations, members and documents. Org A can never read, write or see org B. Membership checks go through security-definer helpers, so nothing recurses.</td></tr>
+          <tr><td><code>004_storage.sql</code></td><td>A public avatars bucket and a private files bucket, both locked to <code>&lt;user-id&gt;/</code> folders.</td></tr>
+          <tr><td><code>tests/rls.test.ts</code></td><td>25 Vitest tests run as two real signed-in users plus the raw anon key. When one goes red, that's a real hole.</td></tr>
+          <tr><td><code>scripts/rls-audit.sql</code></td><td>One query that lists every table with RLS off, RLS on but no policies, <code>using (true)</code>, writes without <code>with check</code>, anon grants, exposed definer functions, and public buckets.</td></tr>
+          <tr><td><code>src/lib/supabase/*</code></td><td>Browser, server and admin clients for Next.js App Router. The admin client imports <code>server-only</code>, so the build fails if it's ever bundled for the browser.</td></tr>
+          <tr><td><code>README.md</code></td><td>Install in 15 minutes, adapt to your schema, and the six mistakes below with the fix and the test for each.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="mistakes">
+    <div class="wrap">
+      <h2>The six RLS mistakes AI builders make</h2>
+      <p class="sub">Each one has a policy in the kit that fixes it, a test that proves it, and an audit finding that catches it.</p>
+      <div class="mistakes">
+        <div class="mistake"><h3>RLS on, no policies</h3><p>Every query returns nothing. Builders "fix" it by turning RLS off, which is the next mistake.</p></div>
+        <div class="mistake"><h3><code>using (true)</code></h3><p>The same as no security. Every user's data is readable with the public key.</p></div>
+        <div class="mistake"><h3>Writes without <code>with check</code></h3><p>Users can insert rows that belong to someone else, or re-point their row at another user.</p></div>
+        <div class="mistake"><h3>Policies that query another RLS table</h3><p>Recursion errors, or a silent empty result that locks everyone out.</p></div>
+        <div class="mistake"><h3>Service-role key in the browser</h3><p>It bypasses RLS entirely. Once it's in page source, anyone owns the database.</p></div>
+        <div class="mistake"><h3>Public storage bucket "for now"</h3><p>User documents become world-readable URLs and nobody revisits it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Proof, not promises</h2>
+      <p class="sub">The tests and the audit script are the product. The policies are what they protect.</p>
+      <div class="shots">
+        <img src="tests.png" alt="Test output: 25 tests passed, including anon cannot read premium items and member of org B cannot see org A documents.">
+        <img src="audit.png" alt="Audit output table with findings, severity, object and fix columns.">
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <h2>Pricing</h2>
+      <p class="sub">The kit for people who want to fix it themselves. The audit for people who want it checked.</p>
+      <div class="pricing">
+        <div class="plan">
+          <h3>RLS Starter kit</h3>
+          <div class="amt">$39</div>
+          <div class="per">one-time, per developer</div>
+          <ul>
+            <li>4 migrations with complete policies</li>
+            <li>25-test suite</li>
+            <li>rls-audit.sql</li>
+            <li>Next.js client, server and admin setup</li>
+            <li>README with the six mistakes</li>
+            <li>Updates via private buyers repo</li>
+          </ul>
+          <a class="btn" href="https://shieldbaselabs.lemonsqueezy.com/checkout/buy/1c695770-01a0-4749-b58b-15c5110f3fe6">Buy the kit</a>
+        </div>
+        <div class="plan">
+          <h3>Supabase Security Audit</h3>
+          <div class="amt">$99</div>
+          <div class="per">fixed price, delivered in 48 hours</div>
+          <ul>
+            <li>Every table's RLS status and policies reviewed by hand</li>
+            <li>Auth configuration, storage rules, exposed keys</li>
+            <li>Written report: findings ranked critical, high, medium, each with the exact fix</li>
+            <li>Fixed quote to implement, if you want me to</li>
+            <li>Needs read-only project access or a schema dump, revocable after</li>
+          </ul>
+          <a class="btn ghost" href="mailto:rusirudesilva@gmail.com?subject=Supabase%20Security%20Audit">Request an audit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <details><summary>Does it work with a Lovable, Bolt or v0 project?</summary><p>Yes. Those tools create a standard Supabase project. Apply the migrations through the SQL editor or the CLI, and replace the generated client files with the ones in the kit.</p></details>
+      <details><summary>Does it work with Prisma or Drizzle?</summary><p>The SQL is plain Postgres and works with any tool. The TypeScript clients are for the Supabase JS SDK; a Drizzle variant is planned for buyers.</p></details>
+      <details><summary>Do I need Docker?</summary><p>No. The tests run against any Supabase project, including a free hosted one. Local Supabase via Docker is supported but optional.</p></details>
+      <details><summary>Why revoke grants from anon if RLS is already on?</summary><p>RLS filters rows. Grants decide whether the role can query the table at all. Both layers on is defence in depth, and the audit script checks both.</p></details>
+      <details><summary>What's the licence?</summary><p>Use it in unlimited personal and commercial projects. Don't resell or republish the kit itself.</p></details>
+      <details><summary>Who's behind it?</summary><p>Rusiru De Silva, a backend engineer with 10+ years on production systems for healthcare, government and enterprise. I answer RLS questions in the Supabase and Lovable communities most days; the kit is everything I kept repeating.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Shieldbase Labs · Malaysia</div>
+    <div><a href="https://x.com/RusiruKanchane">X</a> · <a href="https://github.com/RooMax">GitHub</a> · <a href="https://www.linkedin.com/in/rusirudesilva/">LinkedIn</a> · <a href="mailto:rusirudesilva@gmail.com">Email</a></div>
+  </div>
+</footer>
+</body>
+</html>
