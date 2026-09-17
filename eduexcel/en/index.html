@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edu Excel Seremban</title>
+<meta name="description" content="Edu Excel Tuition Centre, Seremban. Mathematics from Standard 1 to STPM with Cikgu Harnish, Master Teacher of Mathematics. Physical and online classes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F4EE; --paper2:#EFEAE0; --ink:#111C36; --ink2:#1B2A4E; --orange:#F07F13; --orange2:#FFB15C;
+  --green:#1F8A5B; --slate:#6A7385; --rule:#D9D2C3; --white:#FFFFFF; --wa:#1DA851;
+  --display:'Bricolage Grotesque',Georgia,serif; --body:'Instrument Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55;font-size:17px;
+  background-image:linear-gradient(rgba(17,28,54,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(17,28,54,.045) 1px,transparent 1px);
+  background-size:28px 28px}
+h1,h2,h3{font-family:var(--display);line-height:1.02;letter-spacing:-.02em;text-wrap:balance}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+section{padding-block:96px}
+.label{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);display:inline-flex;align-items:center;gap:10px}
+.label::before{content:"";width:26px;height:2px;background:var(--orange)}
+.h2{font-size:clamp(34px,4.6vw,56px);font-weight:800;margin-top:16px;max-width:16ch}
+.lede{color:var(--slate);font-size:19px;max-width:56ch;margin-top:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:16px;padding:16px 26px;border-radius:999px;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-line{border:1.5px solid var(--ink);color:var(--ink)}
+.wa-ic{width:20px;height:20px;fill:currentColor}
+
+/* nav */
+header{position:sticky;top:0;z-index:40;background:rgba(247,244,238,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em}
+.brand i{width:38px;height:38px;border-radius:9px;background:var(--ink);color:var(--orange2);display:grid;place-items:center;font-style:normal;font-size:15px;font-weight:800}
+.brand small{display:block;font-family:var(--body);font-weight:500;font-size:12px;color:var(--slate);letter-spacing:.06em;text-transform:uppercase}
+.links{display:flex;gap:30px;font-weight:500;font-size:15.5px}
+.links a{color:var(--ink2)}
+.links a:hover{color:var(--orange)}
+.nav .btn{padding:11px 18px;font-size:14.5px}
+
+/* hero */
+.hero{padding-block:72px 88px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(46px,6.4vw,88px);font-weight:800;margin-top:22px}
+.hero h1 .strike{position:relative;color:var(--slate);font-weight:500}
+.hero h1 .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:.09em;background:var(--orange);transform:rotate(-3deg);border-radius:2px}
+.hero h1 .plus{color:var(--orange)}
+.hero p{font-size:20px;color:var(--slate);max-width:50ch;margin-top:24px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.hero-meta{display:flex;gap:28px;margin-top:40px;color:var(--slate);font-size:15px;flex-wrap:wrap}
+.hero-meta b{display:block;font-family:var(--display);font-size:26px;color:var(--ink);letter-spacing:-.02em;line-height:1}
+/* report card */
+.slip{background:var(--white);border:1.5px solid var(--ink);border-radius:6px;padding:28px 30px 26px;box-shadow:10px 10px 0 var(--ink);transform:rotate(1.5deg);max-width:440px;margin-left:auto;position:relative}
+.slip::before{content:"";position:absolute;top:-14px;left:50%;width:120px;height:28px;background:rgba(240,127,19,.55);transform:translateX(-50%) rotate(-2deg)}
+.slip-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--ink);padding-bottom:12px;font-family:var(--display)}
+.slip-head b{font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+.slip-head span{font-size:13px;color:var(--slate)}
+.slip table{width:100%;border-collapse:collapse;margin-top:6px;font-size:16px;font-variant-numeric:tabular-nums}
+.slip td{padding:12px 0;border-bottom:1px dashed var(--rule)}
+.slip td:last-child{text-align:right;font-family:var(--display);font-weight:800;font-size:22px}
+.slip td .was{color:var(--slate);font-weight:500;font-size:15px;text-decoration:line-through;margin-right:10px}
+.slip td .now{color:var(--green)}
+.slip-foot{margin-top:16px;display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--slate)}
+.slip-foot .sign{font-family:var(--display);font-weight:700;color:var(--ink);font-size:15px;transform:rotate(-4deg)}
+
+/* strip */
+.strip{background:var(--ink);color:#fff;padding-block:22px;border-block:1.5px solid var(--ink)}
+.strip .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.02em}
+.strip span::before{content:"✓";color:var(--orange2);margin-right:10px}
+
+/* levels: progression */
+.track{position:relative;margin-top:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.track::before{content:"";position:absolute;left:4%;right:4%;top:14px;height:2px;background:var(--ink);opacity:.25}
+.lv{position:relative;padding-top:44px}
+.lv::before{content:"";position:absolute;left:0;top:6px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:3px solid var(--ink)}
+.lv.hot::before{background:var(--orange);border-color:var(--orange)}
+.lv .yr{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);font-weight:700}
+.lv h3{font-size:26px;font-weight:800;margin-top:6px}
+.lv p{color:var(--slate);font-size:15.5px;margin-top:10px}
+.lv ul{list-style:none;margin-top:14px;display:grid;gap:6px;font-size:15px}
+.lv li{padding-left:18px;position:relative}
+.lv li::before{content:"·";position:absolute;left:0;top:-3px;font-size:26px;color:var(--orange);line-height:1}
+.mode{margin-top:52px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.mode div{background:var(--white);border:1.5px solid var(--ink);border-radius:6px;padding:22px 24px;display:flex;gap:18px;align-items:center}
+.mode b{font-family:var(--display);font-size:19px;display:block}
+.mode span{color:var(--slate);font-size:15px}
+.mode .k{font-family:var(--display);font-weight:800;font-size:34px;color:var(--orange);line-height:1;min-width:52px}
+
+/* cikgu */
+.cikgu{background:var(--paper2);border-block:1.5px solid var(--rule)}
+.cikgu-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.frame{aspect-ratio:4/5;background:var(--ink);border-radius:6px;position:relative;overflow:hidden;color:rgba(255,255,255,.6);display:grid;place-items:center;text-align:center;padding:24px;font-size:14px;font-family:var(--display)}
+.frame::after{content:"";position:absolute;inset:14px;border:1px solid rgba(255,255,255,.25);border-radius:3px}
+.frame .tag{position:absolute;left:0;bottom:36px;background:var(--orange);color:var(--ink);font-weight:800;padding:10px 18px;font-size:15px;letter-spacing:.02em}
+.creds{margin-top:30px;display:grid;gap:0;border-top:1.5px solid var(--ink)}
+.creds div{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.creds b{font-family:var(--display);font-weight:800;color:var(--orange);font-size:18px;font-variant-numeric:tabular-nums}
+.creds span{font-size:17px}
+.pull{margin-top:30px;font-family:var(--display);font-size:clamp(22px,2.4vw,28px);font-weight:700;line-height:1.25;max-width:26ch}
+.pull::before{content:"“";color:var(--orange);margin-right:4px}
+
+/* results */
+.res-grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.res{background:var(--white);border:1.5px solid var(--ink);border-radius:6px;padding:26px 26px 22px;display:flex;flex-direction:column;gap:18px;position:relative}
+.res .grade{display:flex;align-items:baseline;gap:12px;font-family:var(--display);border-bottom:1.5px solid var(--ink);padding-bottom:14px}
+.res .grade s{color:var(--slate);font-weight:500;font-size:20px}
+.res .grade em{font-style:normal;font-weight:800;font-size:44px;color:var(--green);letter-spacing:-.03em;line-height:1}
+.res .grade small{margin-left:auto;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);font-weight:700}
+.res p{font-size:16.5px;flex:1}
+.res .who{font-size:14px;color:var(--slate)}
+.res .who b{color:var(--ink);font-family:var(--display);font-size:15px;display:block}
+.photos{margin-top:28px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px}
+.photos .ph{aspect-ratio:16/10;background:var(--ink2);border-radius:6px;display:grid;place-items:center;color:rgba(255,255,255,.55);font-size:13px;font-family:var(--display);text-align:center;padding:12px}
+.photos .ph:first-child{grid-row:span 2;aspect-ratio:auto}
+
+/* cta */
+.cta{background:var(--ink);color:#fff;padding-block:80px;position:relative;overflow:hidden}
+.cta::before{content:"A+";position:absolute;right:-40px;bottom:-90px;font-family:var(--display);font-weight:800;font-size:380px;color:rgba(255,255,255,.04);letter-spacing:-.06em;line-height:1}
+.cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start;position:relative}
+.cta h2{color:#fff;font-size:clamp(34px,4.4vw,54px);font-weight:800;margin-top:16px}
+.cta .lede{color:rgba(255,255,255,.7)}
+.cta .label{color:var(--orange2)}.cta .label::before{background:var(--orange2)}
+.cta .btn-wa{margin-top:30px;font-size:18px;padding:20px 30px}
+.details{margin-top:38px;display:grid;gap:18px;font-size:16px;color:rgba(255,255,255,.85)}
+.details > div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.details span{font-family:var(--display);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange2);font-weight:700;padding-top:4px}
+form{background:var(--paper);color:var(--ink);border-radius:6px;padding:32px;border:1.5px solid var(--ink)}
+form h3{font-family:var(--display);font-size:24px;font-weight:800}
+form>p{color:var(--slate);font-size:15px;margin-top:6px;margin-bottom:22px}
+.f{display:grid;gap:6px;margin-bottom:16px}
+.f label{font-weight:600;font-size:14px}
+.f input,.f select,.f textarea{width:100%;padding:13px 14px;border:1.5px solid var(--rule);border-radius:4px;background:var(--white);font:inherit;font-size:16px}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--orange)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg label{border:1.5px solid var(--rule);border-radius:4px;padding:12px 8px;text-align:center;font-weight:600;font-size:14.5px;cursor:pointer;background:var(--white)}
+.seg input{display:none}
+.seg input:checked+span{color:var(--orange)}
+form .btn{width:100%;justify-content:center;margin-top:6px}
+form small{display:block;text-align:center;color:var(--slate);font-size:13px;margin-top:12px}
+
+footer{padding-block:30px 120px;border-top:1.5px solid var(--rule);font-size:14px;color:var(--slate)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+footer .soc{display:flex;gap:22px;font-weight:600;color:var(--ink)}
+
+.sticky{display:none;position:fixed;inset:auto 0 0 0;z-index:50;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--paper);border-top:1.5px solid var(--ink)}
+.sticky .btn{width:100%;justify-content:center}
+
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+@media (max-width:980px){
+  .hero-grid,.cikgu-grid,.cta-grid{grid-template-columns:1fr}
+  .slip{margin:30px auto 0;transform:rotate(0)}
+  .track{grid-template-columns:1fr 1fr}.track::before{display:none}
+  .res-grid{grid-template-columns:1fr}
+  .photos{grid-template-columns:1fr 1fr}.photos .ph:first-child{grid-column:span 2;aspect-ratio:16/9}
+  .links{display:none}
+  section{padding-block:72px}
+  .frame{max-width:420px}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .nav .btn{display:none}
+  .track,.mode,.two{grid-template-columns:1fr}
+  .seg{grid-template-columns:1fr 1fr 1fr}
+  .details div{grid-template-columns:1fr;gap:4px}
+  .sticky{display:block}
+  .strip .wrap{flex-direction:column;gap:10px}
+  form{padding:22px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="brand"><i>EE</i><span>Edu Excel<small>Tuition Centre · Seremban</small></span></a>
+    <nav class="links">
+      <a href="#kelas">Classes</a><a href="#cikgu">Cikgu Harnish</a><a href="#hasil">Results</a><a href="#daftar">Contact</a><a href="../" style="font-weight:700;color:var(--orange)">BM</a>
+    </nav>
+    <a class="btn btn-wa" href="https://wa.me/601127364315?text=Hi%20Edu%20Excel%2C%20I%20would%20like%20to%20ask%20about%20tuition%20classes." target="_blank">
+      <svg class="wa-ic" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="label">Mathematics · Standard 1 to STPM</span>
+      <h1>From <span class="strike">failing</span> to <span class="plus">A+</span>. For real.</h1>
+      <p>Mathematics tuition in Seremban with Cikgu Harnish, Master Teacher of Mathematics and author of SPM workbooks. Small classes, in person or online, with progress reports sent straight to parents on WhatsApp.</p>
+      <div class="hero-cta">
+        <a class="btn btn-wa" href="https://wa.me/601127364315" target="_blank">Ask about schedule &amp; fees</a>
+        <a class="btn btn-line" href="#kelas">See classes</a>
+      </div>
+      <div class="hero-meta">
+        <div><b>113</b>five-star reviews</div>
+        <div><b>Std 1–STPM</b>every level</div>
+        <div><b>2 modes</b>in person &amp; online</div>
+      </div>
+    </div>
+    <div>
+      <div class="slip">
+        <div class="slip-head"><b>Progress Slip</b><span>Edu Excel · SPM 2025</span></div>
+        <table>
+          <tr><td>Mathematics</td><td><span class="was">E</span><span class="now">A+</span></td></tr>
+          <tr><td>Additional Mathematics</td><td><span class="was">D</span><span class="now">A</span></td></tr>
+          <tr><td>Science</td><td><span class="was">C</span><span class="now">A</span></td></tr>
+        </table>
+        <div class="slip-foot"><span>After 8 months at Edu Excel</span><span class="sign">Cikgu Harnish ✓</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span>Master Teacher of Mathematics</span><span>Small groups, full attention</span><span>Monthly reports to parents</span><span>Trial class, no commitment</span>
+  </div>
+</div>
+
+<section id="kelas">
+  <div class="wrap">
+    <span class="label">Our classes</span>
+    <h2 class="h2">One path, from Standard 1 to STPM.</h2>
+    <p class="lede">Students who start with us in primary school stay through SPM. Each level is built so the foundation laid this year becomes an advantage next year.</p>
+
+    <div class="track">
+      <div class="lv">
+        <div class="yr">Standard 1–6</div><h3>Primary</h3>
+        <p>Solid grounding in number, fractions and problem solving.</p>
+        <ul><li>Mathematics &amp; Science</li><li>UASA preparation</li></ul>
+      </div>
+      <div class="lv">
+        <div class="yr">Form 1–3</div><h3>Lower Secondary</h3>
+        <p>The move into algebra and geometry without losing confidence.</p>
+        <ul><li>Mathematics &amp; Science</li><li>Proper study technique</li></ul>
+      </div>
+      <div class="lv hot">
+        <div class="yr">Form 4–5</div><h3>SPM</h3>
+        <p>Focused on scoring A. Question format, HOTS and time management.</p>
+        <ul><li>Mathematics &amp; Add Maths</li><li>SPM Intensive Workshop</li></ul>
+      </div>
+      <div class="lv">
+        <div class="yr">Semester 1–3</div><h3>STPM</h3>
+        <p>In-depth guidance for pre-university Mathematics.</p>
+        <ul><li>Mathematics T</li><li>Private classes available</li></ul>
+      </div>
+    </div>
+
+    <div class="mode">
+      <div><span class="k">6</span><div><b>Group tuition</b><span>Maximum 6 students per class. Everyone gets to ask.</span></div></div>
+      <div><span class="k">1:1</span><div><b>Private tuition</b><span>For students catching up on the syllabus or aiming for A+.</span></div></div>
+      <div><span class="k">📍</span><div><b>In person in Seremban</b><span>Pusat Komersial Saujana, easy parking.</span></div></div>
+      <div><span class="k">💻</span><div><b>Online from home</b><span>Live classes, recording shared afterwards.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cikgu" id="cikgu">
+  <div class="wrap cikgu-grid">
+    <div class="frame">[ Photo: Cikgu Harnish at the whiteboard ]<span class="tag">Master Teacher of Mathematics</span></div>
+    <div>
+      <span class="label">Your teacher</span>
+      <h2 class="h2">Cikgu Harnish knows the marking scheme, because he wrote the workbook.</h2>
+      <div class="creds">
+        <div><b>01</b><span>Head of Mathematics Department</span></div>
+        <div><b>02</b><span>Author of SPM Mathematics workbooks</span></div>
+        <div><b>03</b><span>Runs the SPM Intensive Workshop every year</span></div>
+        <div><b>04</b><span>Specialist in KSSM Mathematics &amp; Additional Mathematics</span></div>
+      </div>
+      <p class="pull">Every student can get an A. The only difference is who guides them and how they study.”</p>
+    </div>
+  </div>
+</section>
+
+<section id="hasil">
+  <div class="wrap">
+    <span class="label">Student results</span>
+    <h2 class="h2">Proof, not promises.</h2>
+    <div class="res-grid">
+      <div class="res">
+        <div class="grade"><s>E</s><em>A</em><small>SPM Mathematics</small></div>
+        <p>I used to fail Mathematics every time. After joining Cikgu Harnish's class I finally understood how to answer, and I got an A in SPM.</p>
+        <div class="who"><b>Pavitra</b>SPM student</div>
+      </div>
+      <div class="res">
+        <div class="grade"><em>6A</em><small>SPM 2025</small></div>
+        <p>Cikgu teaches until you understand, not just memorise formulas. His SPM workshop really helped before the exam.</p>
+        <div class="who"><b>Aiman</b>SPM student</div>
+      </div>
+      <div class="res">
+        <div class="grade"><s>C</s><em>A+</em><small>Add Maths</small></div>
+        <p>My daughter used to be afraid of Add Maths. Now she is the one teaching her friends. Cikgu always keeps us updated on her progress.</p>
+        <div class="who"><b>Puan Ain Syafiqah</b>Mother of a Form 5 student</div>
+      </div>
+    </div>
+    <div class="photos">
+      <div class="ph">[ Photo: Edu Excel classroom ]</div>
+      <div class="ph">[ SPM 2026 Workshop poster ]</div>
+      <div class="ph">[ Student result slips ]</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="daftar">
+  <div class="wrap cta-grid">
+    <div>
+      <span class="label">Get in touch</span>
+      <h2>Trial class this week. Just WhatsApp us.</h2>
+      <p class="lede">Tell us your child's level and subject. We reply with the schedule and fees the same day.</p>
+      <a class="btn btn-wa" href="https://wa.me/601127364315" target="_blank">
+        <svg class="wa-ic" viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+        +60 11-2736 4315
+      </a>
+      <div class="details">
+        <div><span>Address</span><div>No 170, Jalan Komersial Saujana 5, Pusat Komersial Saujana, 70300 Seremban</div></div>
+        <div><span>Hours</span><div>Mon–Fri 2:00–9:00 PM · Sat–Sun 9:00 AM–6:00 PM</div></div>
+        <div><span>Email</span><div>eduexcel.25@outlook.com</div></div>
+        <div><span>Social</span><div>Facebook Edu Excel · Instagram @eduexcel25</div></div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Thank you! We will contact you on WhatsApp.');">
+      <h3>Or fill in this form</h3>
+      <p>No payment. We contact you first.</p>
+      <div class="two">
+        <div class="f"><label for="nama">Name</label><input id="nama" type="text" placeholder="Parent or student" required></div>
+        <div class="f"><label for="wa">WhatsApp number</label><input id="wa" type="tel" placeholder="012-345 6789" required></div>
+      </div>
+      <div class="two">
+        <div class="f"><label for="peringkat">Level</label>
+          <select id="peringkat" required><option value="">Select</option><option>Standard 1–6</option><option>Form 1–3</option><option>Form 4–5 (SPM)</option><option>STPM</option></select></div>
+        <div class="f"><label for="subjek">Subject</label>
+          <select id="subjek" required><option value="">Select</option><option>Mathematics</option><option>Additional Mathematics</option><option>Science</option><option>Other</option></select></div>
+      </div>
+      <div class="f"><label>Class mode</label>
+        <div class="seg">
+          <label><input type="radio" name="mod" id="mod1" checked><span>In person</span></label>
+          <label><input type="radio" name="mod" id="mod2"><span>Online</span></label>
+          <label><input type="radio" name="mod" id="mod3"><span>Private</span></label>
+        </div>
+      </div>
+      <div class="f"><label for="mesej">Notes</label><textarea id="mesej" rows="3" placeholder="e.g. My son is in Form 4 and struggling with Add Maths."></textarea></div>
+      <button class="btn btn-ink" type="submit">Send</button>
+      <small>We reply the same day.</small>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 Edu Excel Tuition Centre, Seremban · Your success, our mission</div>
+    <div class="soc"><a href="https://www.facebook.com/profile.php?id=61577940897183" target="_blank">Facebook</a><a href="https://instagram.com/eduexcel25" target="_blank">Instagram</a></div>
+  </div>
+</footer>
+
+<div class="sticky"><a class="btn btn-wa" href="https://wa.me/601127364315" target="_blank">WhatsApp Edu Excel</a></div>
+
+</body>
+</html>
